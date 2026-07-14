@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import { useNotification } from '../../hooks/useNotification';
 import Button from '../../components/common/Button';
-import Modal from '../../components/common/Modal';
 import Badge from '../../components/common/Badge';
 import {
-  Sliders, Shield, Key, Eye, Clock, Server, Save,
-  Activity, Zap, MessageSquare, Mail, Smartphone,
-  Database, CheckCircle2, AlertCircle, XCircle,
-  Settings2, RefreshCw, ChevronRight, Lock, EyeOff
+  Sliders, Shield, Key, Server, Save,
+  Activity, AlertCircle,
+  Settings2, RefreshCw, Lock, EyeOff
 } from 'lucide-react';
 
 // ── Integration health mock ───────────────────────────────────────────────

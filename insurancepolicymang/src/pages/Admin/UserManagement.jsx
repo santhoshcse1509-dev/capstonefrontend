@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import adminService from '../../services/adminService';
 import { useNotification } from '../../hooks/useNotification';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
-import { UserCheck, ShieldAlert, Key, UserCog, Search, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { UserCheck, ShieldAlert, Key, UserCog, Search, Mail, Phone } from 'lucide-react';
 
 const UserManagement = () => {
   const notification = useNotification();
@@ -25,9 +25,22 @@ const UserManagement = () => {
   const [targetStatus, setTargetStatus] = useState('');
   const [targetRole, setTargetRole] = useState('');
 
+  const fetchUsers = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await adminService.getUsers();
+      setUsers(data || []);
+      setFilteredUsers(data || []);
+    } catch (err) {
+      notification.error(err.response?.data?.message || 'Failed to fetch users');
+    } finally {
+      setLoading(false);
+    }
+  }, [notification]);
+
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   useEffect(() => {
     const term = searchTerm.toLowerCase();
@@ -39,19 +52,6 @@ const UserManagement = () => {
     );
     setFilteredUsers(filtered);
   }, [searchTerm, users]);
-
-  const fetchUsers = async () => {
-    setLoading(true);
-    try {
-      const data = await adminService.getUsers();
-      setUsers(data || []);
-      setFilteredUsers(data || []);
-    } catch (err) {
-      notification.error(err.response?.data?.message || 'Failed to fetch users');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleOpenStatusModal = (user, status) => {
     setSelectedUser(user);

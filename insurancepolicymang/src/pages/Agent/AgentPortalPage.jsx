@@ -6,10 +6,8 @@ import {
   Users, 
   Award, 
   CheckCircle, 
-  XCircle, 
   HelpCircle,
   Building,
-  Key,
   ShieldCheck,
   RefreshCw,
   AlertCircle
@@ -26,7 +24,6 @@ const AgentPortalPage = () => {
   const [otpCode, setOtpCode] = useState('');
   const [otpError, setOtpError] = useState('');
   const [requiresOtp, setRequiresOtp] = useState(false);
-  const [actionType, setActionType] = useState(''); // 'add', 'delete', 'update'
   const [selectedAccountId, setSelectedAccountId] = useState(null);
   const [verificationCode, setVerificationCode] = useState('');
   const [showVerifyModal, setShowVerifyModal] = useState(false);
@@ -65,7 +62,6 @@ const AgentPortalPage = () => {
     e.preventDefault();
     if (!otpCode) {
       setRequiresOtp(true);
-      setActionType('add');
       return;
     }
 

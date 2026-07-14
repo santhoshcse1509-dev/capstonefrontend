@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Modal from '../../components/common/Modal';
 import Button from '../../components/common/Button';
@@ -46,7 +46,7 @@ const GrievancePage = () => {
     description: '',
   });
 
-  const fetchTickets = async () => {
+  const fetchTickets = useCallback(async () => {
     try {
       const res = await grievanceService.getMyTickets();
       if (res.success) {
@@ -55,11 +55,11 @@ const GrievancePage = () => {
     } catch (err) {
       notification.error('Failed to load grievances');
     }
-  };
+  }, [notification]);
 
   useEffect(() => {
     fetchTickets();
-  }, []);
+  }, [fetchTickets]);
 
   const handleOpenTicket = async (ticket) => {
     setSelectedTicket(ticket);

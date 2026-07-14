@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import paymentService from '../../services/paymentService';
-import { useNotification } from '../../hooks/useNotification';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import {
-  CreditCard, TrendingUp, AlertTriangle, RefreshCw, CheckCircle,
-  Search, ChevronDown, Download, Users, IndianRupee, ArrowUpRight,
-  ArrowDownRight, CircleDollarSign, FileText
+  AlertTriangle, CheckCircle,
+  Search, Download, Users, IndianRupee, ArrowUpRight,
+  ArrowDownRight, CircleDollarSign
 } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, LineChart, Line, Legend
+  ResponsiveContainer, Legend
 } from 'recharts';
 
 // ── Mock data ───────────────────────────────────────────────────────────────
@@ -53,13 +51,9 @@ const getCommBadge = (s) => s === 'PAID' ? 'success' : s === 'PENDING' ? 'warnin
 const getDisputeBadge = (s) => s === 'RESOLVED' ? 'success' : s === 'UNDER_REVIEW' ? 'warning' : 'error';
 
 const FinancialRecon = () => {
-  const notification = useNotification();
   const [tab, setTab] = useState('collection'); // collection | commission | reconciliation | disputes
   const [searchTerm, setSearchTerm] = useState('');
-  const [payments, setPayments] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState(null);
-  const [selectedDispute, setSelectedDispute] = useState(null);
 
   const stats = {
     totalCollected: MONTHLY_COLLECTION.reduce((s, m) => s + m.collected, 0),
@@ -70,14 +64,6 @@ const FinancialRecon = () => {
   };
 
   const collectionRate = ((stats.totalCollected / stats.totalDue) * 100).toFixed(1);
-
-  useEffect(() => {
-    setLoading(true);
-    paymentService.getAllPayments?.()
-      .then(d => setPayments(d || []))
-      .catch(() => setPayments([]))
-      .finally(() => setLoading(false));
-  }, []);
 
   const tabs = [
     { key: 'collection', label: 'Premium Collection' },

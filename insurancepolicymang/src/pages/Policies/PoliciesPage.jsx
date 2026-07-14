@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import { usePolicy } from '../../hooks/usePolicy';
 import PolicyCard from '../../components/cards/PolicyCard';
@@ -6,12 +6,11 @@ import Loader from '../../components/common/Loader';
 import Modal from '../../components/common/Modal';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
-import Badge from '../../components/common/Badge';
 import policyService from '../../services/policyService';
 import { useNotification } from '../../hooks/useNotification';
 import {
   Download, Calculator, ArrowRightLeft,
-  FileText, CheckCircle2, AlertCircle, X, ShieldCheck, TrendingUp, ChevronRight, ChevronLeft, Loader2
+  FileText, AlertCircle, TrendingUp, ChevronRight, ChevronLeft, Loader2
 } from 'lucide-react';
 
 const STATUS_FILTERS = ['ALL', 'ACTIVE', 'LAPSED', 'MATURED'];

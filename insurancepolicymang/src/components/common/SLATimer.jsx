@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 /**
  * SLATimer — displays a live countdown pill for SLA deadlines.
@@ -10,18 +10,18 @@
 export default function SLATimer({ deadline, label = 'SLA Deadline' }) {
   const [remaining, setRemaining] = useState(null);
 
-  function calcRemaining() {
+  const calcRemaining = useCallback(() => {
     const now = Date.now();
     const end = new Date(deadline).getTime();
     return end - now; // ms, can be negative
-  }
+  }, [deadline]);
 
   useEffect(() => {
     if (!deadline) return;
     setRemaining(calcRemaining());
     const interval = setInterval(() => setRemaining(calcRemaining()), 60_000);
     return () => clearInterval(interval);
-  }, [deadline]);
+  }, [deadline, calcRemaining]);
 
   if (!deadline || remaining === null) return null;
 

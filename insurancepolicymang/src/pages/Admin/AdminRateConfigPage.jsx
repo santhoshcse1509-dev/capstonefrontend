@@ -3,12 +3,9 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import adminService from '../../services/adminService';
 import { useNotification } from '../../hooks/useNotification';
 import Modal from '../../components/common/Modal';
-import Button from '../../components/common/Button';
-import Input from '../../components/common/Input';
 import Loader from '../../components/common/Loader';
 import {
-  Settings2, PlusCircle, Pencil, ToggleLeft, ToggleRight,
-  Shield, ChevronDown, ChevronUp, Search
+  Settings2, PlusCircle, Pencil, ToggleLeft, ToggleRight, Search
 } from 'lucide-react';
 
 const POLICY_TYPES = ['LIFE', 'HEALTH', 'MOTOR', 'HOME'];
@@ -60,7 +57,7 @@ const AdminRateConfigPage = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [notification]);
 
   useEffect(() => { loadData(); }, [loadData]);
 

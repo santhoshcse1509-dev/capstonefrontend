@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import adminService from '../../services/adminService';
 import { useNotification } from '../../hooks/useNotification';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
-import { FileText, Eye, CheckCircle2, XCircle, Search, Mail, Phone, Calendar, AlertCircle, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { FileText, Eye, CheckCircle2, XCircle, Mail, Phone, AlertCircle, Info, ChevronDown, ChevronUp } from 'lucide-react';
 
 const KycReview = () => {
   const notification = useNotification();
@@ -23,11 +23,7 @@ const KycReview = () => {
   // POI reference panel toggle
   const [showPoiRef, setShowPoiRef] = useState(false);
 
-  useEffect(() => {
-    fetchPendingKyc();
-  }, []);
-
-  const fetchPendingKyc = async () => {
+  const fetchPendingKyc = useCallback(async () => {
     setLoading(true);
     try {
       const data = await adminService.getPendingKyc();
@@ -37,7 +33,11 @@ const KycReview = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [notification]);
+
+  useEffect(() => {
+    fetchPendingKyc();
+  }, [fetchPendingKyc]);
 
   const handleApprove = async (userId) => {
     if (!window.confirm('Are you sure you want to approve this KYC?')) return;

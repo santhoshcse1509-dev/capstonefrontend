@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Modal from '../../components/common/Modal';
 import SLATimer from '../../components/common/SLATimer';
@@ -13,9 +13,7 @@ import {
   MessageSquare,
   Phone,
   Search,
-  TrendingDown,
   User,
-  XCircle,
   Inbox,
   CalendarCheck,
   BarChart3,
@@ -132,11 +130,7 @@ export default function GrievanceManagement() {
   const [internalNote, setInternalNote] = useState({});
   const [actionFeedback, setActionFeedback] = useState(null);
 
-  useEffect(() => {
-    fetchTickets();
-  }, []);
-
-  const fetchTickets = async () => {
+  const fetchTickets = useCallback(async () => {
     try {
       const res = await grievanceService.getAdminTickets();
       if (res.success) {
@@ -146,7 +140,11 @@ export default function GrievanceManagement() {
       notification.error('Failed to load tickets');
       console.error(err);
     }
-  };
+  }, [notification]);
+
+  useEffect(() => {
+    fetchTickets();
+  }, [fetchTickets]);
 
   const openModal = async (g) => {
     setModalGrievance(g);

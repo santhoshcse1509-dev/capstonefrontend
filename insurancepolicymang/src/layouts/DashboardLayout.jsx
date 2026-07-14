@@ -19,7 +19,6 @@ import {
   UserCheck,
   Users,
   Sliders,
-  Building,
   History,
   Bell,
   MessageCircle,

@@ -11,7 +11,7 @@ import { normalizeList } from '../../utils/helpers';
 import { useNotification } from '../../hooks/useNotification';
 import {
   Download, Bell, BellOff, AlertCircle, CreditCard,
-  Smartphone, Building2, RefreshCw, CheckCircle2, Clock
+  Smartphone, Building2, RefreshCw, CheckCircle2
 } from 'lucide-react';
 
 // ── Mock payments for display ────────────────────────────────────────────────
@@ -258,7 +258,6 @@ const PaymentsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {UPCOMING_DUE.map(due => {
                 const days = daysUntil(due.dueDate);
-                const graceDays = daysUntil(due.gracePeriodEnd);
                 const isUrgent = days <= 5;
                 return (
                   <div key={due.policyId} className={`border rounded-2xl p-5 flex items-start justify-between gap-4 ${isUrgent ? 'bg-amber-50 border-amber-200' : 'bg-white border-slate-100'} shadow-sm`}>

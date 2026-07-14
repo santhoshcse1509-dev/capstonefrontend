@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   LineChart, Line, PieChart, Pie, Cell, Legend, AreaChart, Area
 } from 'recharts';
-import { Download, TrendingDown, TrendingUp, AlertTriangle, BarChart3, Filter, RefreshCw } from 'lucide-react';
+import { Download, TrendingDown, TrendingUp, AlertTriangle, BarChart3, Filter } from 'lucide-react';
 
 // ── Mock analytics data ─────────────────────────────────────────────────────
 const CLAIM_TAT = [

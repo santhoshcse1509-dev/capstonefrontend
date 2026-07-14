@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import adminService from '../../services/adminService';
 import { useNotification } from '../../hooks/useNotification';
-import { History, Calendar, Search, RefreshCw, Filter, ShieldAlert } from 'lucide-react';
+import { Calendar, Search, RefreshCw, Filter } from 'lucide-react';
 import { formatDateTime } from '../../utils/helpers';
 
 const AuditLogs = () => {
@@ -17,15 +17,7 @@ const AuditLogs = () => {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  useEffect(() => {
-    fetchLogs();
-  }, []);
-
-  useEffect(() => {
-    applyClientFilters();
-  }, [searchTerm, logs]);
-
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     setLoading(true);
     try {
       const filters = {};
@@ -47,9 +39,9 @@ const AuditLogs = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [dateFrom, dateTo, entityTypeFilter, notification]);
 
-  const applyClientFilters = () => {
+  const applyClientFilters = useCallback(() => {
     const term = searchTerm.toLowerCase();
     const filtered = logs.filter(log => 
       (log.action && log.action.toLowerCase().includes(term)) ||
@@ -58,7 +50,15 @@ const AuditLogs = () => {
       (log.entityType && log.entityType.toLowerCase().includes(term))
     );
     setFilteredLogs(filtered);
-  };
+  }, [searchTerm, logs]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [fetchLogs]);
+
+  useEffect(() => {
+    applyClientFilters();
+  }, [applyClientFilters]);
 
   const handleApplyServerFilters = (e) => {
     e.preventDefault();

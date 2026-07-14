@@ -206,7 +206,7 @@ const CLAIM_TYPE_COLORS = {
 // ─────────────────────────────────────────────────
 
 /** 5-step horizontal progress stepper */
-const ClaimStepper = ({ status }) => {
+function ClaimStepper({ status }) {
   const currentStep = STATUS_STEP_MAP[status] ?? 0;
   const isRejected = status === 'REJECTED';
 
@@ -1095,7 +1095,7 @@ const ClaimsPage = () => {
           </form>
         </Modal>
 
-        {/* ══════════════════════════════════════════
+        {/* ══════���═══════════════════════════════════
             ADMIN — Claim Review Modal
         ══════════════════════════════════════════ */}
         <Modal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)}>

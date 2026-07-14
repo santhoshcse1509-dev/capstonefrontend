@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import adminService from '../../services/adminService';
 import authService from '../../services/authService';
@@ -7,7 +7,7 @@ import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
-import { UserCheck, ShieldAlert, Key, UserCog, Search, Mail, Phone, Plus, UserPlus, AlertCircle } from 'lucide-react';
+import { UserCheck, ShieldAlert, Key, UserCog, Search, Mail, Phone, Plus, UserPlus } from 'lucide-react';
 
 const AgentOversight = () => {
   const notification = useNotification();
@@ -38,22 +38,7 @@ const AgentOversight = () => {
   });
   const [addingAgent, setAddingAgent] = useState(false);
 
-  useEffect(() => {
-    fetchAgents();
-  }, []);
-
-  useEffect(() => {
-    const term = searchTerm.toLowerCase();
-    const filtered = agents.filter(u => 
-      u.firstName.toLowerCase().includes(term) ||
-      u.lastName.toLowerCase().includes(term) ||
-      u.email.toLowerCase().includes(term) ||
-      (u.phone && u.phone.includes(term))
-    );
-    setFilteredAgents(filtered);
-  }, [searchTerm, agents]);
-
-  const fetchAgents = async () => {
+  const fetchAgents = useCallback(async () => {
     setLoading(true);
     try {
       const data = await adminService.getUsers();
@@ -68,7 +53,22 @@ const AgentOversight = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [notification]);
+
+  useEffect(() => {
+    fetchAgents();
+  }, [fetchAgents]);
+
+  useEffect(() => {
+    const term = searchTerm.toLowerCase();
+    const filtered = agents.filter(u => 
+      u.firstName.toLowerCase().includes(term) ||
+      u.lastName.toLowerCase().includes(term) ||
+      u.email.toLowerCase().includes(term) ||
+      (u.phone && u.phone.includes(term))
+    );
+    setFilteredAgents(filtered);
+  }, [searchTerm, agents]);
 
   const handleOpenStatusModal = (agent, status) => {
     setSelectedAgent(agent);
