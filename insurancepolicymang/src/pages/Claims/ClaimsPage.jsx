@@ -20,13 +20,11 @@ import {
   AlertCircle,
   AlertTriangle,
   CheckCircle2,
-  Clock,
   FileText,
   UploadCloud,
   ChevronDown,
   ChevronUp,
   MessageSquareWarning,
-  Gavel,
   FilePlus2,
   RefreshCw,
   X,
@@ -170,27 +168,6 @@ const CLAIM_DOCS_BY_TYPE = {
 };
 
 // ─────────────────────────────────────────────────
-// STATUS → STEPPER MAPPING
-// ─────────────────────────────────────────────────
-const STATUS_STEP_MAP = {
-  SUBMITTED: 0,
-  UNDER_REVIEW: 1,
-  DOCS_NEEDED: 2,
-  APPROVED: 3,
-  REJECTED: 3,
-  PAID: 4,
-  SETTLED: 4,
-};
-
-const STEPPER_STEPS = [
-  { label: 'Submitted', icon: FilePlus2 },
-  { label: 'Under Review', icon: Eye },
-  { label: 'Docs Needed', icon: FileText },
-  { label: 'Decision', icon: Gavel },
-  { label: 'Settled', icon: CheckCircle2 },
-];
-
-// ─────────────────────────────────────────────────
 // CLAIM TYPE BADGE COLOURS
 // ─────────────────────────────────────────────────
 const CLAIM_TYPE_COLORS = {
@@ -204,10 +181,6 @@ const CLAIM_TYPE_COLORS = {
 // ─────────────────────────────────────────────────
 // MAIN CLAIMS PAGE COMPONENT
 // ─────────────────────────────────────────────────
-
-const ClaimsPageComponent = () => {
-  return null;
-};
 
 /** Drag-and-drop file uploader */
 const FileUploader = ({ files, onChange, accept = '*', multiple = true }) => {

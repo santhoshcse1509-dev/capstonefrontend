@@ -193,14 +193,6 @@ export default function QuoteWizardPage() {
     });
   };
 
-  // Auto-calculate premium when arriving at Payment & Review step
-  useEffect(() => {
-    const stepTitle = STEPS[activeStep]?.title;
-    if (stepTitle === 'Payment & Review' && form.policyId) {
-      calculatePremium();
-    }
-  }, [activeStep, form.policyId, calculatePremium]);
-
   const calculatePremium = useCallback(async () => {
     setLoading(true);
     try {
@@ -229,6 +221,14 @@ export default function QuoteWizardPage() {
       setLoading(false);
     }
   }, [form, notification]);
+
+  // Auto-calculate premium when arriving at Payment & Review step
+  useEffect(() => {
+    const stepTitle = STEPS[activeStep]?.title;
+    if (stepTitle === 'Payment & Review' && form.policyId) {
+      calculatePremium();
+    }
+  }, [activeStep, form.policyId, calculatePremium]);
 
   const handleSendOtp = async () => {
     const phoneNum = form.mobileNumber || '';
