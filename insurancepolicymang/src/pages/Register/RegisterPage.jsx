@@ -58,14 +58,22 @@ const RegisterPage = () => {
     try {
       const data = await register(formData);
       // Backend returns mfaRequired=true + mfaSetupUri + tempToken
-      setMfaData({
-        mfaSetupUri: data.mfaSetupUri || '',
-        tempToken: data.tempToken || '',
-        totpCode: '',
-      });
-      setStep(2);
+      if (data.mfaRequired || data.mfaSetupUri) {
+        setMfaData({
+          mfaSetupUri: data.mfaSetupUri || '',
+          tempToken: data.tempToken || '',
+          totpCode: '',
+        });
+        setStep(2);
+      } else {
+        // If no MFA required, proceed to dashboard
+        const isAdmin = data?.user?.roles?.includes('ROLE_ADMIN');
+        navigate(isAdmin ? '/admin/users' : '/dashboard');
+      }
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Registration failed. Try again.');
+      const errorMsg = err.response?.data?.message || err.message || 'Registration failed. Try again.';
+      setError(errorMsg);
+      console.error('[v0] Registration error:', err);
     } finally {
       setLoading(false);
     }
