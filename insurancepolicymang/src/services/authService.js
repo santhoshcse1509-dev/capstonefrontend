@@ -80,17 +80,19 @@ const authService = {
       if (user) localStorage.setItem(USER_KEY, JSON.stringify(user));
       return payload;
     } catch (err) {
-      // Demo registration fallback - backend not available
-      if (err.response?.status === 405 || !err.response) {
+      // Demo registration fallback - backend not available (405, network error, etc)
+      if (err.response?.status === 405 || err.response?.status === 404 || !err.response) {
+        console.log('[v0] Backend registration unavailable, using demo mode');
         const payload = {
           mfaRequired: true,
           tempToken: 'demo-temp-token',
           mfaSetupUri: 'otpauth://totp/InsuranceApp:' + userData.email + '?secret=JBSWY3DPEBLW64TMMQ======&issuer=InsuranceApp',
           user: {
-            id: 'demo-user',
+            id: 'demo-user-' + Date.now(),
             firstName: userData.firstName,
             lastName: userData.lastName,
             email: userData.email,
+            phone: userData.phone || '+91-XXXXXXXXXX',
             roles: ['ROLE_CUSTOMER'],
           },
         };
