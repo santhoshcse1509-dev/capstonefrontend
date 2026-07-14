@@ -1,0 +1,31 @@
+SecureLife Insurance — Policy Management Guide
+
+1. Policy Types
+SecureLife offers four main policy categories: Term Life, Whole Life, Auto Insurance, and Homeowners Insurance. Term Life policies provide coverage for a fixed period, typically 10, 20, or 30 years, and pay a death benefit only if the policyholder passes away during the term. Whole Life policies provide lifetime coverage and include a cash value component that grows over time. Auto Insurance policies cover liability, collision, and comprehensive damage, with optional add-ons for roadside assistance and rental car reimbursement. Homeowners policies cover dwelling structure, personal property, liability, and additional living expenses if the home becomes uninhabitable.
+
+2. Policy Application and Underwriting
+New applicants must complete a policy application and, for life insurance products above $250,000 in coverage, undergo a medical exam including blood pressure, blood work, and a health questionnaire. Underwriting decisions are typically completed within 10 to 15 business days. Applicants are placed into one of four risk classes — Preferred Plus, Preferred, Standard, and Substandard — which determines the premium rate. Auto and homeowners applications do not require medical exams but do require a property inspection or vehicle history report.
+
+3. Premium Payment
+Premiums can be paid monthly, quarterly, semi-annually, or annually. Annual payment plans receive a 4% discount compared to monthly billing. Payments are due on the policy's monthly anniversary date. If a payment is not received by the due date, a grace period of 31 days applies for life insurance policies and 10 days for auto and homeowners policies, during which coverage remains active. Premiums can be paid via bank draft, credit card, or through the online policyholder portal.
+
+4. Grace Period and Lapse
+If premium payment is not made before the grace period ends, the policy lapses and coverage terminates. Life insurance policyholders may apply for reinstatement within 5 years of a lapse by submitting a reinstatement application, paying all past-due premiums with interest, and providing evidence of continued insurability. Auto and homeowners policies that lapse must be re-underwritten as new applications and may be subject to a new waiting period before coverage becomes effective again.
+
+5. Beneficiary Designations
+Life insurance policyholders may name one or more primary beneficiaries and contingent beneficiaries who receive the death benefit if the primary beneficiary is deceased. Beneficiary designations can be changed at any time by submitting a beneficiary change form through the policyholder portal or by mail. Beneficiary designations marked "irrevocable" require the beneficiary's written consent before they can be changed.
+
+6. Claims Process
+To file a claim, policyholders or beneficiaries submit a claim form along with supporting documentation — a death certificate for life insurance claims, a police report and repair estimates for auto claims, or photos and a damage assessment for homeowners claims. Claims are assigned to a claims adjuster within 2 business days of submission. Straightforward auto and homeowners claims are typically resolved within 15 to 30 days; life insurance claims are typically paid within 30 to 60 days once all required documentation is received. Disputed claims may be escalated to the internal appeals unit or, if unresolved, to state insurance mediation.
+
+7. Policy Renewal
+Auto and homeowners policies renew automatically every 6 or 12 months unless the policyholder cancels or the insurer declines to renew. Renewal premiums may change based on updated risk factors such as claims history, credit-based insurance score, or changes in coverage limits. Policyholders receive a renewal notice with the updated premium at least 30 days before the renewal date. Life insurance policies with a level term do not change premiums during the term but may offer conversion to a permanent policy before the term ends.
+
+8. Endorsements and Policy Changes
+Policyholders can request endorsements to modify coverage, such as adding a driver to an auto policy, increasing dwelling coverage on a homeowners policy, or adding a rider to a life insurance policy (e.g., accidental death benefit or waiver of premium). Endorsement requests are processed within 5 business days and may result in a premium adjustment, prorated for the remainder of the policy term.
+
+9. Cancellation Policy
+Policyholders may cancel a policy at any time by submitting a written cancellation request. Auto and homeowners policies canceled mid-term are refunded on a prorated basis, minus any applicable cancellation fee. Life insurance policies canceled within the first 10 to 30 days (the "free look period," which varies by state) receive a full premium refund with no fees. After the free look period, whole life policies canceled mid-term may be eligible for a cash surrender value payout instead of a refund.
+
+10. Regulatory Compliance
+SecureLife policies are filed with and regulated by each state's Department of Insurance. Policy forms, premium rates, and claims-handling practices must comply with state-specific insurance codes. Policyholders who believe a claim was handled unfairly can file a complaint with their state insurance commissioner. SecureLife maintains required reserves and undergoes an annual financial examination to verify solvency and compliance with statutory reserve requirements.

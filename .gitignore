@@ -1,0 +1,44 @@
+# Node dependencies
+**/node_modules/
+node_modules/
+
+# Maven target directories
+**/target/
+target/
+
+# Python caches and virtual environments
+**/__pycache__/
+__pycache__/
+**/*.pyc
+.venv/
+venv/
+env/
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# Log files
+*.log
+hs_err_pid*
+replay_pid*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Zip archives
+*.zip
+
+# Env files
+.env
+**/.env
+
+

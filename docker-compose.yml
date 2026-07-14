@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: ankane/pgvector:v0.5.1
+    container_name: insurance_postgres
+    environment:
+      POSTGRES_USER: insurance_user
+      POSTGRES_PASSWORD: insurance_password
+      POSTGRES_DB: insurance_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: insurance_redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  backend:
+    build: 
+      context: ./InsuranceWebProject/InsuranceWebProject
+      dockerfile: Dockerfile
+    container_name: insurance_backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/insurance_db
+      - SPRING_DATASOURCE_USERNAME=insurance_user
+      - SPRING_DATASOURCE_PASSWORD=insurance_password
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SPRING_MAIL_ENABLED=true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+      - mailpit
+    restart: always
+
+  mailpit:
+    image: axllent/mailpit:v1.15
+    container_name: insurance_mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    restart: always
+
+  frontend:
+    build:
+      context: ./insurancepolicymang
+      dockerfile: Dockerfile
+    container_name: insurance_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  postgres_data:

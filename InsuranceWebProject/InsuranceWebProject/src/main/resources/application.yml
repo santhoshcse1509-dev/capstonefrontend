@@ -1,0 +1,73 @@
+spring:
+  application:
+    name: insurance-policy-management
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/insurance_db
+    username: insurance_user
+    password: insurance_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # ─── Email Configuration ───────────────────────────────────────
+  # Set spring.mail.enabled=true and configure SMTP to send real emails.
+  # When disabled (default), emails are logged to the console instead.
+  mail:
+    enabled: ${SPRING_MAIL_ENABLED:true}
+    from: ${SPRING_MAIL_FROM:santhoshcse1509@gmail.com}
+    host: ${SPRING_MAIL_HOST:smtp.gmail.com}
+    port: ${SPRING_MAIL_PORT:587}
+    username: ${SPRING_MAIL_USERNAME:santhoshcse1509@gmail.com}
+    password: ${SPRING_MAIL_PASSWORD:ikxbxokexktlfekx}
+    properties:
+      mail:
+        smtp:
+          auth: ${SPRING_MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${SPRING_MAIL_SMTP_STARTTLS_ENABLE:true}
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        options:
+          model: gpt-3.5-turbo
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expirationMs: 86400000
+
+server:
+  port: 8080
+
+# Frontend base URL used for password-reset links
+app:
+  frontend-url: http://localhost:3000
+
+razorpay:
+  key-id: ${RAZORPAY_KEY_ID:rzp_test_TCur1vJfySQeMp}
+  key-secret: ${RAZORPAY_KEY_SECRET:QzfJTmH1N04pvtlkGtJSJvH0}
+
