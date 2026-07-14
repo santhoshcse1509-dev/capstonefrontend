@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "InsurePro",
+  "name": "InsurePro - Digital Insurance Manager",
+  "description": "A premium, secure digital insurance policy manager with multi-factor authentication, intelligent assistant, and visual analytics.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,28 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "/dashboard",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#1f2937",
+  "background_color": "#ffffff",
+  "screenshots": [
+    {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["finance", "productivity"]
 }
