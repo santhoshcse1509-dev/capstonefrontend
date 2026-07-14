@@ -194,14 +194,7 @@ const ProfilePage = () => {
     }
   };
 
-  const handleMakePrimary = async (id) => {
-    try {
-      await api.post(`/bank-details/${id}/make-primary`);
-      fetchBankDetails();
-    } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update primary account.');
-    }
-  };
+
 
   const handleSetPrimaryPayout = async (id) => {
     try {

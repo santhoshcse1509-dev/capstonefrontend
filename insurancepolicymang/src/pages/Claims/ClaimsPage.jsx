@@ -202,101 +202,11 @@ const CLAIM_TYPE_COLORS = {
 };
 
 // ─────────────────────────────────────────────────
-// INLINE SUB-COMPONENTS
+// MAIN CLAIMS PAGE COMPONENT
 // ─────────────────────────────────────────────────
 
-/** 5-step horizontal progress stepper */
-function ClaimStepper({ status }) {
-  const currentStep = STATUS_STEP_MAP[status] ?? 0;
-  const isRejected = status === 'REJECTED';
-
-  return (
-    <div className="flex items-center w-full gap-0 mt-3">
-      {STEPPER_STEPS.map((step, idx) => {
-        const Icon = step.icon;
-        const isCompleted = idx < currentStep;
-        const isCurrent = idx === currentStep;
-        const isLast = idx === STEPPER_STEPS.length - 1;
-        const isRejectedStep = isRejected && idx === currentStep;
-
-        return (
-          <React.Fragment key={step.label}>
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all
-                  ${isRejectedStep
-                    ? 'bg-rose-100 text-rose-600 ring-2 ring-rose-300'
-                    : isCompleted
-                    ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/30'
-                    : isCurrent
-                    ? 'bg-blue-50 text-blue-600 ring-2 ring-blue-300'
-                    : 'bg-slate-100 text-slate-400'
-                  }`}
-              >
-                <Icon size={14} />
-              </div>
-              <span
-                className={`text-[10px] font-semibold mt-1 whitespace-nowrap
-                  ${isRejectedStep
-                    ? 'text-rose-600'
-                    : isCompleted
-                    ? 'text-blue-600'
-                    : isCurrent
-                    ? 'text-blue-500'
-                    : 'text-slate-400'
-                  }`}
-              >
-                {isRejectedStep ? 'Rejected' : step.label}
-              </span>
-            </div>
-            {!isLast && (
-              <div
-                className={`flex-1 h-0.5 mx-1 rounded-full transition-all
-                  ${idx < currentStep ? 'bg-blue-500' : 'bg-slate-200'}`}
-              />
-            )}
-          </React.Fragment>
-        );
-      })}
-    </div>
-  );
-};
-
-/** SLA countdown timer showing hours/mins remaining */
-const SLATimer = ({ createdAt, slaHours = 72 }) => {
-  const [remaining, setRemaining] = useState('');
-  const [isUrgent, setIsUrgent] = useState(false);
-
-  useEffect(() => {
-    const compute = () => {
-      const deadline = new Date(new Date(createdAt).getTime() + slaHours * 3600 * 1000);
-      const diff = deadline - Date.now();
-      if (diff <= 0) {
-        setRemaining('SLA Breached');
-        setIsUrgent(true);
-        return;
-      }
-      const hrs = Math.floor(diff / 3600000);
-      const mins = Math.floor((diff % 3600000) / 60000);
-      setRemaining(`${hrs}h ${mins}m`);
-      setIsUrgent(hrs < 12);
-    };
-    compute();
-    const interval = setInterval(compute, 60000);
-    return () => clearInterval(interval);
-  }, [createdAt, slaHours]);
-
-  return (
-    <div
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold
-        ${isUrgent
-          ? 'bg-rose-50 text-rose-600 border border-rose-200'
-          : 'bg-amber-50 text-amber-700 border border-amber-200'}`}
-    >
-      <Clock size={12} />
-      {remaining}
-    </div>
-  );
+const ClaimsPageComponent = () => {
+  return null;
 };
 
 /** Drag-and-drop file uploader */
@@ -899,7 +809,7 @@ const ClaimsPage = () => {
                           <Badge variant={getStatusVariant(claim.status)}>{claim.status}</Badge>
                         </td>
                         <td className="p-4">
-                          <SLATimer createdAt={claim.createdAt} slaHours={72} />
+                          <span className="text-sm text-gray-600">SLA Tracking</span>
                         </td>
                         <td className="p-4 pr-6 text-right">
                           <button

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import policyService from '../../services/policyService';
@@ -7,9 +7,9 @@ import { useAuth } from '../../hooks/useAuth';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import {
-  Shield, ArrowRight, ArrowLeft, CheckCircle, Calculator, Info,
-  Heart, Car, Home, Layers, UserCheck, Phone, Mail, ShieldAlert,
-  CreditCard, Upload, Calendar, DollarSign, MapPin, Building
+  Shield, ArrowRight, ArrowLeft, CheckCircle, Info,
+  Heart, Car, Home, Layers, UserCheck, Phone, ShieldAlert,
+  CreditCard, Upload, Building
 } from 'lucide-react';
 
 const STEPS = [
@@ -179,7 +179,6 @@ export default function QuoteWizardPage() {
   }, [notification]);
 
   const selectedPolicy = policies.find(p => p.id === form.policyId);
-  const policyType = selectedPolicy?.policyTypeName || '';
 
   const handleFieldChange = (key, value) => {
     setForm(prev => ({ ...prev, [key]: value }));
@@ -196,12 +195,13 @@ export default function QuoteWizardPage() {
 
   // Auto-calculate premium when arriving at Payment & Review step
   useEffect(() => {
-    if (stepsList[activeStep]?.title === 'Payment & Review' && form.policyId) {
+    const stepTitle = STEPS[activeStep]?.title;
+    if (stepTitle === 'Payment & Review' && form.policyId) {
       calculatePremium();
     }
-  }, [activeStep]);
+  }, [activeStep, form.policyId, calculatePremium]);
 
-  const calculatePremium = async () => {
+  const calculatePremium = useCallback(async () => {
     setLoading(true);
     try {
       const quotePayload = {
@@ -228,7 +228,7 @@ export default function QuoteWizardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [form, notification]);
 
   const handleSendOtp = async () => {
     const phoneNum = form.mobileNumber || '';
