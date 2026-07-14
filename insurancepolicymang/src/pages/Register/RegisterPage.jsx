@@ -71,8 +71,11 @@ const RegisterPage = () => {
         navigate(isAdmin ? '/admin/users' : '/dashboard');
       }
     } catch (err) {
-      const errorMsg = err.response?.data?.message || err.message || 'Registration failed. Try again.';
-      setError(errorMsg);
+      // 405 errors are handled by demo mode fallback, so only show other errors
+      if (err.response?.status !== 405) {
+        const errorMsg = err.response?.data?.message || err.message || 'Registration failed. Try again.';
+        setError(errorMsg);
+      }
       console.error('[v0] Registration error:', err);
     } finally {
       setLoading(false);

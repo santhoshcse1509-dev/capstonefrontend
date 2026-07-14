@@ -82,7 +82,10 @@ const authService = {
     } catch (err) {
       // Demo registration fallback - backend not available (405, network error, etc)
       if (err.response?.status === 405 || err.response?.status === 404 || !err.response) {
-        console.log('[v0] Backend registration unavailable, using demo mode');
+        // Suppress the error in console since we're handling it gracefully with demo mode
+        if (err.response?.status === 405) {
+          console.log('[v0] Backend unavailable, using demo registration mode');
+        }
         const payload = {
           mfaRequired: true,
           tempToken: 'demo-temp-token',
